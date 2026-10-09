@@ -1,0 +1,14 @@
+// MDE Advanced Hunting / Sentinel (DeviceNetworkEvents)
+// externaldata so le o ficheiro se for publico (ou blob com SAS). Repo privado nao funciona.
+let base = "https://raw.githubusercontent.com/<UTILIZADOR>/<REPO>/main/data/";
+let workers = externaldata(w:string) [strcat(base, "workers.txt")] with (format="txt");
+let apexes  = externaldata(a:string) [strcat(base, "apexes.txt")]  with (format="txt");
+DeviceNetworkEvents
+| where Timestamp > ago(30d)
+| where isnotempty(RemoteUrl)
+| extend Host = tolower(tostring(parse_url(iff(RemoteUrl has "://", RemoteUrl, strcat("https://", RemoteUrl))).Host))
+| extend Apex = extract(@"([^.]+\.[^.]+)$", 1, Host)
+| extend HitWorker = Host in (workers), HitApex = Apex in (apexes)
+| where HitWorker or HitApex
+| project Timestamp, DeviceName, InitiatingProcessAccountName, InitiatingProcessFileName, RemoteUrl, Host, HitWorker, HitApex
+| order by Timestamp desc
