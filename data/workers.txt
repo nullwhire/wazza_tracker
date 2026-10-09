@@ -1,0 +1,2 @@
+beacon-surge-sync.beacon-surge-sync.workers.dev
+beaconoflinenew.lastfightlink.workers.dev
