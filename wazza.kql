@@ -1,7 +1,12 @@
 // MDE Advanced Hunting / Sentinel (DeviceNetworkEvents)
-let base = "https://github.com/nullwhire/wazza_tracker/tree/main/data";
-let workers = externaldata(w:string) [strcat(base, "workers.txt")] with (format="txt");
-let apexes  = externaldata(a:string) [strcat(base, "apexes.txt")]  with (format="txt");
+let workers = externaldata(w:string) [
+    "https://raw.githubusercontent.com/nullwhire/wazza_tracker/main/data/workers.txt"
+] with (format="txt")
+| where isnotempty(w);
+let apexes = externaldata(a:string) [
+    "https://raw.githubusercontent.com/nullwhire/wazza_tracker/main/data/apexes.txt"
+] with (format="txt")
+| where isnotempty(a);
 DeviceNetworkEvents
 | where Timestamp > ago(30d)
 | where isnotempty(RemoteUrl)
