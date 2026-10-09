@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
-"""Tracker urlscan.io do kit Wazza (device code, lure Adobe, Next/Vercel + workers.dev).
+"""urlscan.io tracker for the Wazza phishing kit (device code, Adobe lure, Next/Vercel + workers.dev).
 
-Corre de 6 em 6 horas (GitHub Actions). Cada corrida:
-  1. procura scans novas por assinatura (filename wazza-config / mint-token)
-     e por pivot nos workers.dev ja conhecidos (resiste a renomearem o endpoint)
-  2. abre cada scan nova (/api/v1/result/) e confirma a assinatura nos pedidos
-  3. acumula IOCs em data/ e avisa se houver novos (Tines opcional)
+Runs every 6 hours (GitHub Actions). Each run:
+  1. searches for new scans by signature (filename wazza-config / mint-token)
+     and pivots on the workers.dev hosts already known (survives endpoint renames)
+  2. opens each new scan (/api/v1/result/) and confirms the signature in its requests
+  3. accumulates IOCs in data/ and reports new ones (Tines webhook optional)
 
-Ambiente:
-  URLSCAN_API_KEY     key do urlscan (secret)
-  TINES_WEBHOOK_URL   opcional, recebe JSON com os IOCs novos
-  HOURS               janela normal, default 30 (cobre uma corrida falhada)
-  BACKFILL_DAYS       janela da 1a corrida (sem estado), default 90
+Environment:
+  URLSCAN_API_KEY     urlscan API key (secret)
+  TINES_WEBHOOK_URL   optional, receives JSON with the new IOCs
+  HOURS               normal search window, default 30 (covers one failed run)
+  BACKFILL_DAYS       window for the first run (no state), default 90
   DATA_DIR            default ./data
+  EXPERIMENTAL        set to 1 to also run the experimental queries
 """
 import csv
 import json
@@ -31,19 +32,19 @@ HOURS = int(os.environ.get("HOURS", "30"))
 BACKFILL = int(os.environ.get("BACKFILL_DAYS", "90"))
 KEY = os.environ.get("URLSCAN_API_KEY")
 
-# on=False: experimentais, nao testados como pivots fiaveis. Os hits vao so para candidates.csv.
+# on=False: experimental, not tested as reliable pivots. Their hits only go to candidates.csv.
 QUERIES = [
     {"name": "wazza-config", "q": 'filename:"wazza-config"', "on": True},
     {"name": "mint-token", "q": 'filename:"mint-token"', "on": True},
     {"name": "botid-uuid", "q": "page.url:*149e9513-01fa-4fb0-aad4-566afd725d1b*", "on": False},
     {"name": "tok-param", "q": "page.url:*tok=179*", "on": False},
 ]
-CONFIRM = "wazza-config"          # ultimo segmento de path que confirma o kit
-CANDIDATE = {"mint-token"}        # sinal fraco, nunca entra nas listas de IOCs
+CONFIRM = "wazza-config"          # last path segment that confirms the kit
+CANDIDATE = {"mint-token"}        # weak signal, never enters the IOC lists
 EXCLUDE_APEX = {"google.com", "workers.dev", "vercel.app", "cloudflare.com",
                 "googleapis.com", "gstatic.com"}
 TWO_LABEL = {"co.uk", "org.uk", "com.br", "com.au", "co.jp"}
-WORKER_DAYS = 30                  # pivot em workers vistos nos ultimos N dias
+WORKER_DAYS = 30                  # pivot on workers seen in the last N days
 WORKER_MAX = 10
 
 
@@ -62,18 +63,18 @@ def get(url, allow_404=False, retries=5):
         except urllib.error.HTTPError as e:
             if e.code == 429:
                 wait = 10 * (attempt + 1)
-                log(f"429, a esperar {wait}s")
+                log(f"429, waiting {wait}s")
                 time.sleep(wait)
                 continue
             if e.code in (404, 410) and allow_404:
                 return None
             raise
-    raise RuntimeError("demasiados 429")
+    raise RuntimeError("too many 429 responses")
 
 
 def search_all(q, size=100):
-    """Todas as scans de q. Se a API parar abaixo do total (visto: 100 de 138),
-    repete com date:< ao dia seguinte ao mais antigo e deduplica por id."""
+    """All scans for q. If the API stops short of the total (seen: 100 of 138),
+    repeat with date:< set to the day after the oldest result and dedupe by id."""
     got, ids, cur = [], set(), q
     for _ in range(8):
         pass_ids, after, total = set(), None, None
@@ -99,7 +100,7 @@ def search_all(q, size=100):
         nxt = (date.fromisoformat(oldest) + timedelta(days=1)).isoformat()
         new_q = f"({q}) AND date:<{nxt}"
         if new_q == cur:
-            log("AVISO: pagina sem progresso, a parar")
+            log("WARNING: no progress on this page, stopping")
             break
         cur = new_q
         time.sleep(2)
@@ -150,8 +151,8 @@ def main():
     seen = set(load_lines(p_seen))
     first = not seen
     clause = f"date:>now-{BACKFILL}d" if first else f"date:>now-{HOURS}h"
-    log("primeira corrida (backfill)" if first else "corrida normal", "|", clause,
-        "| key:", "sim" if KEY else "NAO")
+    log("first run (backfill)" if first else "normal run", "|", clause,
+        "| key:", "yes" if KEY else "NO")
 
     iocs = {}
     if os.path.exists(p_iocs):
@@ -174,10 +175,10 @@ def main():
         try:
             rs = search_all(f"({q}) AND {clause}")
         except Exception as e:
-            log(f"[{name}] erro: {e}")
+            log(f"[{name}] error: {e}")
             continue
         new = [r for r in rs if r["_id"] not in seen]
-        log(f"[{name}] {len(rs)} scans, {len(new)} novas")
+        log(f"[{name}] {len(rs)} scans, {len(new)} new")
         for r in new:
             todo.setdefault(r["_id"], name)
         time.sleep(2)
@@ -187,7 +188,7 @@ def main():
         try:
             res = get(RESULT.format(sid), allow_404=True)
         except Exception as e:
-            log(f"{sid}: erro {e}, fica para a proxima corrida")
+            log(f"{sid}: error {e}, left for the next run")
             continue
         seen.add(sid)
         time.sleep(1)
@@ -238,8 +239,8 @@ def main():
     with open(p_seen, "w", encoding="utf-8") as f:
         f.write("\n".join(sorted(seen)[-5000:]) + "\n")
 
-    lines = [f"Wazza tracker: {len(todo)} scans novas, {len(now_new)} IOCs novos, {len(cands)} candidatos"]
-    lines += [f"  NOVO {r['type']:7s} {r['value']}  ({r['first_seen'][:10]}, {r['source']})" for r in now_new]
+    lines = [f"Wazza tracker: {len(todo)} new scans, {len(now_new)} new IOCs, {len(cands)} candidates"]
+    lines += [f"  NEW {r['type']:7s} {r['value']}  ({r['first_seen'][:10]}, {r['source']})" for r in now_new]
     print("\n".join(lines))
     summ = os.environ.get("GITHUB_STEP_SUMMARY")
     if summ:
@@ -252,7 +253,7 @@ def main():
             urllib.request.urlopen(urllib.request.Request(
                 hook, data=body, headers={"Content-Type": "application/json"}), timeout=30)
         except Exception as e:
-            log(f"webhook falhou: {e}")
+            log(f"webhook failed: {e}")
 
 
 if __name__ == "__main__":
