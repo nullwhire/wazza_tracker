@@ -1,18 +1,13 @@
-// MDE Advanced Hunting / Sentinel (DeviceNetworkEvents)
-let workers = externaldata(w:string) [
-    "https://raw.githubusercontent.com/nullwhire/wazza_tracker/main/data/workers.txt"
-] with (format="txt")
-| where isnotempty(w);
-let apexes = externaldata(a:string) [
-    "https://raw.githubusercontent.com/nullwhire/wazza_tracker/main/data/apexes.txt"
-] with (format="txt")
-| where isnotempty(a);
+let workers = externaldata(w:string) ["https://raw.githubusercontent.com/nullwhire/wazza_tracker/main/data/workers.txt"] with (format="txt") | where isnotempty(w);
+let domains = externaldata(d:string) ["https://raw.githubusercontent.com/nullwhire/wazza_tracker/main/data/domains.txt"] with (format="txt") | where isnotempty(d);
+let apexes  = externaldata(a:string) ["https://raw.githubusercontent.com/nullwhire/wazza_tracker/main/data/apexes.txt"]  with (format="txt") | where isnotempty(a);
 DeviceNetworkEvents
-| where Timestamp > ago(30d)
+| where Timestamp > ago(90d)
 | where isnotempty(RemoteUrl)
 | extend Host = tolower(tostring(parse_url(iff(RemoteUrl has "://", RemoteUrl, strcat("https://", RemoteUrl))).Host))
 | extend Apex = extract(@"([^.]+\.[^.]+)$", 1, Host)
-| extend HitWorker = Host in (workers), HitApex = Apex in (apexes)
-| where HitWorker or HitApex
-| project Timestamp, DeviceName, InitiatingProcessAccountName, InitiatingProcessFileName, RemoteUrl, Host, HitWorker, HitApex
-| order by Timestamp desc
+| extend HitWorker = Host in (workers), HitHost = Host in (domains), HitApex = Apex in (apexes)
+| where HitWorker or HitHost or HitApex
+| extend Confidence = case(HitWorker or HitHost, "high", "verify")
+| project Timestamp, DeviceName, InitiatingProcessAccountName, InitiatingProcessFileName, RemoteUrl, Host, Confidence, HitWorker, HitHost, HitApex
+| order by Confidence asc, Timestamp desc
