@@ -1,5 +1,5 @@
 // MDE Advanced Hunting / Sentinel (DeviceNetworkEvents)
-let base = "https://raw.githubusercontent.com/<UTILIZADOR>/<REPO>/main/data/";
+let base = "https://github.com/nullwhire/wazza_tracker/tree/main/data";
 let workers = externaldata(w:string) [strcat(base, "workers.txt")] with (format="txt");
 let apexes  = externaldata(a:string) [strcat(base, "apexes.txt")]  with (format="txt");
 DeviceNetworkEvents
