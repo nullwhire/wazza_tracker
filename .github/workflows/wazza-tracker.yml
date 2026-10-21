@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "17 */6 * * *"
   workflow_dispatch:
+    inputs:
+      hours:
+        description: "Search window in hours. Leave empty for the default (30). 2160 = 90 days, for a one-off backfill."
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -29,6 +34,7 @@ jobs:
           URLSCAN_API_KEY: ${{ secrets.URLSCAN_API_KEY }}
           TINES_WEBHOOK_URL: ${{ secrets.TINES_WEBHOOK_URL }}
           EXPERIMENTAL: "final-page-api-php"
+          HOURS: ${{ inputs.hours || '30' }}
 
       - name: Commit
         run: |
