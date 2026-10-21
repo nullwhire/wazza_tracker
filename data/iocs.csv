@@ -17,6 +17,15 @@ apex,mdiament.eu,2026-10-04T01:37:07.195Z,2026-10-04T01:37:07.195Z,01a1048e-a93d
 apex,nellarmonia.eu,2026-10-04T01:38:14.934Z,2026-10-04T01:38:14.934Z,01a1048f-b161-7088-b70a-92934f700024,wazza-config
 apex,polskaprezydencjacsr.eu,2026-10-04T01:38:39.605Z,2026-10-04T01:38:39.605Z,01a10490-1568-72af-9c59-6bc37c984819,wazza-config
 apex,agifthome.com,2026-10-07T12:44:18.814Z,2026-10-07T12:44:18.814Z,01a11664-9371-7228-80f8-a5a03246f192,wazza-config
+apex,beton-beton.eu,2026-10-20T00:00:00.000Z,2026-10-20T00:00:00.000Z,,levelblue-2026-10-20
+apex,cardamomo.eu,2026-10-20T00:00:00.000Z,2026-10-20T00:00:00.000Z,,levelblue-2026-10-20
+apex,electroloys.com,2026-10-20T00:00:00.000Z,2026-10-20T00:00:00.000Z,,levelblue-2026-10-20
+apex,euniverza.eu,2026-10-20T00:00:00.000Z,2026-10-20T00:00:00.000Z,,levelblue-2026-10-20
+apex,hacsg.com,2026-10-20T00:00:00.000Z,2026-10-20T00:00:00.000Z,,levelblue-2026-10-20
+apex,lesbolides.eu,2026-10-20T00:00:00.000Z,2026-10-20T00:00:00.000Z,,levelblue-2026-10-20
+apex,nbi-training.eu,2026-10-20T00:00:00.000Z,2026-10-20T00:00:00.000Z,,levelblue-2026-10-20
+apex,originalpizza.eu,2026-10-20T00:00:00.000Z,2026-10-20T00:00:00.000Z,,levelblue-2026-10-20
+apex,robologic.eu,2026-10-20T00:00:00.000Z,2026-10-20T00:00:00.000Z,,levelblue-2026-10-20
 apex,pc-jets.com,2026-10-20T09:53:56.664Z,2026-10-20T09:53:56.664Z,01a158bb-36dd-715f-9438-510dc1b6d5f3,worker:beacon-surge-sync.beacon-surge-sync.workers.dev
 domain,dymowski.eu,2026-07-29T08:21:10.965Z,2026-07-29T08:21:10.965Z,019facf6-829b-70c9-a346-d0b2b4f31059,wazza-config
 domain,safetystock.eu,2026-07-31T14:00:53.613Z,2026-07-31T14:00:53.613Z,019fb87a-3b63-75c0-b820-0f169ce38def,wazza-config
@@ -50,6 +59,7 @@ domain,nellarmonia.eu,2026-10-04T01:38:14.934Z,2026-10-04T01:38:14.934Z,01a1048f
 domain,polskaprezydencjacsr.eu,2026-10-04T01:38:39.605Z,2026-10-04T01:38:39.605Z,01a10490-1568-72af-9c59-6bc37c984819,wazza-config
 domain,qjhwwpxosyznoznk.agifthome.com,2026-10-07T12:43:51.163Z,2026-10-07T12:43:51.163Z,01a11664-29e9-706b-b28f-93293f24af12,wazza-config
 domain,agifthome.com,2026-10-07T12:44:18.814Z,2026-10-07T12:44:18.814Z,01a11664-9371-7228-80f8-a5a03246f192,wazza-config
+domain,fgwhjmdaurspxvznk.hutspotmaken.eu,2026-10-20T00:00:00.000Z,2026-10-20T00:00:00.000Z,,levelblue-2026-10-20
 domain,sheet.pc-jets.com,2026-10-20T09:53:56.664Z,2026-10-20T09:53:56.664Z,01a158bb-36dd-715f-9438-510dc1b6d5f3,worker:beacon-surge-sync.beacon-surge-sync.workers.dev
 gsite,sites.google.com/view/dodicussignpol,2026-07-29T06:34:34.704Z,2026-07-29T06:34:34.704Z,019fac94-b394-731a-9bac-6a3dcdfb0226,wazza-config
 gsite,sites.google.com/view/cmcmcm4,2026-07-29T07:23:12.770Z,2026-07-29T07:23:12.770Z,019facc1-7058-701a-b358-3d00c8e15ce0,wazza-config
@@ -72,4 +82,11 @@ gsite,sites.google.com/view/kjvcfdswqazxcfvghjoplkjmnbvcf,2026-10-04T01:42:10.37
 gsite,sites.google.com/view/onwajuly,2026-10-04T01:42:35.859Z,2026-10-04T01:42:35.859Z,01a10493-ad1d-717e-a510-d91f8a95fe5f,wazza-config
 gsite,sites.google.com/view/securespdf,2026-10-04T01:43:00.228Z,2026-10-04T01:43:00.228Z,01a10494-0a0a-74dc-a6a2-4bf2940e2f71,wazza-config
 worker,beacon-surge-sync.beacon-surge-sync.workers.dev,2026-10-04T01:43:00.228Z,2026-10-20T09:53:56.664Z,01a10494-0a0a-74dc-a6a2-4bf2940e2f71,wazza-config
-worker,beaconoflinenew.lastfightlink.workers.dev,2026-10-07T12:43:51.163Z,2026-10-07T12:43:51.163Z,01a11664-29e9-706b-b28f-93293f24af12,wazza-config
+worker,beaconoflinenew.lastfightlink.workers.dev,2026-10-07T12:43:51.163Z,2026-10-21T07:09:28.598Z,01a11664-29e9-706b-b28f-93293f24af12,wazza-config
+worker_final,dv0psh-purv3w-azfn-b2c0-msauth3-m365svc-s3ntln-4zrfn3x-cntnrx.workers.dev,2026-10-20T00:00:00.000Z,2026-10-20T00:00:00.000Z,,levelblue-2026-10-20
+worker_final,ssosvc-m365s-kvl-dv0pshb-s3ntln-c0mply-4zrmonx-apimgwx-evnthb.workers.dev,2026-10-20T00:00:00.000Z,2026-10-20T00:00:00.000Z,,levelblue-2026-10-20
+worker_final,wndws-pip3ln-sql3-waf3-purv3-gdprsx-dfn-azfn-appsvc-0ffapx.workers.dev,2026-10-20T00:00:00.000Z,2026-10-20T00:00:00.000Z,,levelblue-2026-10-20
+worker_final,purv3w3-t3ms4pp-certs-intun3-sbussvx-4zredg-siemsv-pip3ln-0ffc3.workers.dev,2026-10-20T00:00:00.000Z,2026-10-20T00:00:00.000Z,,levelblue-2026-10-20
+worker_final,c5id-pc17-fffoub1-bul3-ahv1-r00kubt.ondrv-pwrbi3-s3ntln-quesvxs-l0gsvx-entr-m365s-cmplncx-ehubn.workers.dev,2026-10-20T00:00:00.000Z,2026-10-20T00:00:00.000Z,,levelblue-2026-10-20
+worker_final,d3m9a-goo2ns-wx0g-jzhuc2-t9r2b9i.dvps-azbl-fnapp-trc3svc-synpx-quesvxs-purv3-siemsvx-cmplncx.workers.dev,2026-10-20T00:00:00.000Z,2026-10-20T00:00:00.000Z,,levelblue-2026-10-20
+worker_final,unhf69e-e0ppo-l0qoo-a12bcfj-ig1sa4v.wndws-pip3ln-sql3-waf3-purv3-gdprsx-dfn-azfn-appsvc-0ffapx.workers.dev,2026-10-20T00:00:00.000Z,2026-10-20T00:00:00.000Z,,levelblue-2026-10-20
