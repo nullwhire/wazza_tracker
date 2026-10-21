@@ -28,6 +28,7 @@ jobs:
         env:
           URLSCAN_API_KEY: ${{ secrets.URLSCAN_API_KEY }}
           TINES_WEBHOOK_URL: ${{ secrets.TINES_WEBHOOK_URL }}
+          EXPERIMENTAL: "final-page-api-php"
 
       - name: Commit
         run: |
