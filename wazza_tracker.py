@@ -101,6 +101,13 @@ def seed(iocs):
     return n
 
 
+def window_clause(hours):
+    """Whole days use the d unit (the form already used by the backfill), otherwise hours."""
+    if hours >= 24 and hours % 24 == 0:
+        return f"date:>now-{hours // 24}d"
+    return f"date:>now-{hours}h"
+
+
 def log(*a):
     print(*a, file=sys.stderr)
 
@@ -203,7 +210,7 @@ def main():
     p_cand = os.path.join(DATA, "candidates.csv")
     seen = set(load_lines(p_seen))
     first = not seen
-    clause = f"date:>now-{BACKFILL}d" if first else f"date:>now-{HOURS}h"
+    clause = f"date:>now-{BACKFILL}d" if first else window_clause(HOURS)
     log("first run (backfill)" if first else "normal run", "|", clause,
         "| key:", "yes" if KEY else "NO")
 
