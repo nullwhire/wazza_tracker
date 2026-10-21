@@ -1,13 +1,18 @@
+// MDE Advanced Hunting / Sentinel (DeviceNetworkEvents)
+// externaldata only reads files that are publicly reachable (or a blob with a SAS token).
 let workers = externaldata(w:string) ["https://raw.githubusercontent.com/nullwhire/wazza_tracker/main/data/workers.txt"] with (format="txt") | where isnotempty(w);
+let finalw  = externaldata(f:string) ["https://raw.githubusercontent.com/nullwhire/wazza_tracker/main/data/final_workers.txt"] with (format="txt") | where isnotempty(f);
 let domains = externaldata(d:string) ["https://raw.githubusercontent.com/nullwhire/wazza_tracker/main/data/domains.txt"] with (format="txt") | where isnotempty(d);
 let apexes  = externaldata(a:string) ["https://raw.githubusercontent.com/nullwhire/wazza_tracker/main/data/apexes.txt"]  with (format="txt") | where isnotempty(a);
 DeviceNetworkEvents
-| where Timestamp > ago(90d)
+| where Timestamp > ago(30d)
 | where isnotempty(RemoteUrl)
 | extend Host = tolower(tostring(parse_url(iff(RemoteUrl has "://", RemoteUrl, strcat("https://", RemoteUrl))).Host))
 | extend Apex = extract(@"([^.]+\.[^.]+)$", 1, Host)
-| extend HitWorker = Host in (workers), HitHost = Host in (domains), HitApex = Apex in (apexes)
+| extend HitWorker = Host in (workers) or Host in (finalw), HitHost = Host in (domains), HitApex = Apex in (apexes)
 | where HitWorker or HitHost or HitApex
-| extend Confidence = case(HitWorker or HitHost, "high", "verify")
+// Workers and exact hosts are the strong signal. An apex-only hit is medium: the apex serves the
+// kit's decoy site (LevelBlue, 2026-10-20), but it is not proof the user reached the lure page.
+| extend Confidence = case(HitWorker or HitHost, "high", "medium")
 | project Timestamp, DeviceName, InitiatingProcessAccountName, InitiatingProcessFileName, RemoteUrl, Host, Confidence, HitWorker, HitHost, HitApex
 | order by Confidence asc, Timestamp desc
