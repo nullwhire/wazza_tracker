@@ -30,6 +30,8 @@ apex,pc-jets.com,2026-10-20T09:53:56.664Z,2026-10-20T09:53:56.664Z,01a158bb-36dd
 apex,artguid.com,2026-10-22T05:50:01.454Z,2026-10-22T05:50:01.454Z,01a16228-ad2f-719e-a15e-c12b7c0fadad,worker:beacon-surge-sync.beacon-surge-sync.workers.dev
 apex,onlimegreatnesssight.com,2026-10-28T17:04:04.911Z,2026-11-04T01:06:11.018Z,01a18377-f4f2-713e-bf78-41b2a49d5116,worker:beacon-surge-sync.beacon-surge-sync.workers.dev
 apex,interca.info,2026-11-05T08:08:38.439Z,2026-11-05T08:08:38.439Z,01a1aac0-9329-71a6-97b1-3ea3628fcdb7,worker:beaconoflinenew.lastfightlink.workers.dev
+apex,hellomater.info,2026-11-10T23:28:42.206Z,2026-11-10T23:39:33.748Z,01a1c7ca-b68f-7758-9766-822c51eb3603,worker:beaconoflinenew.lastfightlink.workers.dev
+apex,qqgalaxy.info,2026-11-10T23:39:29.045Z,2026-11-11T00:31:02.217Z,01a1c7d4-96e5-70ad-afea-6d76994a2406,worker:beaconoflinenew.lastfightlink.workers.dev
 domain,languagesforwork.eu,2026-07-25T20:39:03.395Z,2026-10-04T01:35:01.371Z,019f9b00-9f6e-758d-b322-8e200631b47b,wazza-config
 domain,bruoth-family.eu,2026-07-27T13:10:09.667Z,2026-10-04T01:35:25.065Z,019fa3b1-ee3c-7443-81c3-d80cfe30447b,wazza-config
 domain,lesbolides.eu,2026-07-27T13:23:24.737Z,2026-07-27T13:23:24.737Z,019fa3be-7d04-7304-ba43-5e0dc60db367,worker:beacon-surge-sync.beacon-surge-sync.workers.dev
@@ -93,6 +95,9 @@ domain,853277901886325114764953868989.onlimegreatnesssight.com,2026-11-04T01:06:
 domain,436685038329894497451260995887.onlimegreatnesssight.com,2026-11-04T01:06:03.895Z,2026-11-04T01:06:03.895Z,01a1a417-6097-7428-85b7-c7bb6d9703ab,worker:beacon-surge-sync.beacon-surge-sync.workers.dev
 domain,241965046622612380549386199804.onlimegreatnesssight.com,2026-11-04T01:06:11.018Z,2026-11-04T01:06:11.018Z,01a1a417-5b91-71df-8fcc-a0b902fcb4fd,worker:beacon-surge-sync.beacon-surge-sync.workers.dev
 domain,elnmzqfiytodbplawfunu.interca.info,2026-11-05T08:08:38.439Z,2026-11-05T08:08:38.439Z,01a1aac0-9329-71a6-97b1-3ea3628fcdb7,worker:beaconoflinenew.lastfightlink.workers.dev
+domain,budyvxzkywdgxbtjkwgwy.hellomater.info,2026-11-10T23:28:42.206Z,2026-11-10T23:39:33.748Z,01a1c7ca-b68f-7758-9766-822c51eb3603,worker:beaconoflinenew.lastfightlink.workers.dev
+domain,hakzlsvpoutotppyupnrtrykyyelh.qqgalaxy.info,2026-11-10T23:39:29.045Z,2026-11-11T00:31:02.217Z,01a1c7d4-96e5-70ad-afea-6d76994a2406,worker:beaconoflinenew.lastfightlink.workers.dev
+domain,hnyvfaaatdldkhaqgfwmnshls.qqgalaxy.info,2026-11-10T23:43:24.226Z,2026-11-10T23:43:24.226Z,01a1c7d8-3750-745a-967e-24d8b353f039,worker:beaconoflinenew.lastfightlink.workers.dev
 gsite,sites.google.com/view/ccttryioiotrtyzghjlytyyflpou,2026-07-23T18:00:52.094Z,2026-07-23T18:00:52.094Z,019f9023-138f-750c-89a2-2a176984b348,worker:beacon-surge-sync.beacon-surge-sync.workers.dev
 gsite,sites.google.com/view/bcgtriwytromcnfkgiyrtyqtrtas,2026-07-24T10:22:48.654Z,2026-07-24T10:22:48.654Z,019f93a6-147c-70db-8062-331c440cd21c,worker:beacon-surge-sync.beacon-surge-sync.workers.dev
 gsite,sites.google.com/view/cgnfigytouytrmvnvghsrt,2026-07-24T12:02:47.089Z,2026-07-24T12:02:47.089Z,019f9401-6ea1-71a1-b610-f8f4666ef7f5,worker:beacon-surge-sync.beacon-surge-sync.workers.dev
@@ -124,7 +129,7 @@ gsite,sites.google.com/view/ctfvygbuhgyftvbgyfpoiuytrftgyh,2026-10-04T01:41:45.8
 gsite,sites.google.com/view/kjvcfdswqazxcfvghjoplkjmnbvcf,2026-10-04T01:42:10.377Z,2026-10-04T01:42:10.377Z,01a10493-4b1e-70f8-82b1-9427e871e393,wazza-config
 gsite,sites.google.com/view/securespdf,2026-10-04T01:43:00.228Z,2026-10-04T01:43:00.228Z,01a10494-0a0a-74dc-a6a2-4bf2940e2f71,wazza-config
 worker,beacon-surge-sync.beacon-surge-sync.workers.dev,2026-07-23T18:00:52.094Z,2026-11-04T01:06:11.018Z,019f9023-138f-750c-89a2-2a176984b348,wazza-config
-worker,beaconoflinenew.lastfightlink.workers.dev,2026-10-07T12:43:51.163Z,2026-11-05T08:08:38.439Z,01a11664-29e9-706b-b28f-93293f24af12,wazza-config
+worker,beaconoflinenew.lastfightlink.workers.dev,2026-10-07T12:43:51.163Z,2026-11-11T00:31:02.217Z,01a11664-29e9-706b-b28f-93293f24af12,wazza-config
 worker_final,dv0psh-purv3w-azfn-b2c0-msauth3-m365svc-s3ntln-4zrfn3x-cntnrx.workers.dev,2026-10-20T00:00:00.000Z,2026-10-20T00:00:00.000Z,,levelblue-2026-10-20
 worker_final,ssosvc-m365s-kvl-dv0pshb-s3ntln-c0mply-4zrmonx-apimgwx-evnthb.workers.dev,2026-10-20T00:00:00.000Z,2026-10-20T00:00:00.000Z,,levelblue-2026-10-20
 worker_final,wndws-pip3ln-sql3-waf3-purv3-gdprsx-dfn-azfn-appsvc-0ffapx.workers.dev,2026-10-20T00:00:00.000Z,2026-10-20T00:00:00.000Z,,levelblue-2026-10-20
